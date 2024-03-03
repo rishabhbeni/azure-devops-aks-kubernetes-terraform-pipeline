@@ -1,6 +1,3 @@
-data "azurerm_kubernetes_service_versions" "current" {
-  location = "Central US"
-}
 resource "azurerm_kubernetes_cluster" "aks_cluster" {
   dns_prefix          = "${azurerm_resource_group.aks_rg.name}"
   location            = azurerm_resource_group.aks_rg.location
