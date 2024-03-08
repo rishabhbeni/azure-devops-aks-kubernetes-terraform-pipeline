@@ -23,8 +23,20 @@ variables:
 
 
 stages:
+- stage: Build
+  jobs:
+    - job: PublishBuildArtifacts
+      steps:
+      - task: PublishPipelineArtifact@1
+        displayName: Publish Artifacts
+        inputs:
+          targetPath: '$(System.DefaultWorkingDirectory)/kube-manifests'
+          artifact: 'kube-manifests-out'
+          publishLocation: 'pipeline'
+
 - stage: Deploy
   displayName: Deploy stage
+  dependsOn: Build
   jobs:
   - deployment: Deploy
     displayName: Deploy
@@ -41,5 +53,5 @@ stages:
               action: 'deploy'
               kubernetesServiceConnection: 'terraform-aks-dev-cluster-default'
               namespace: 'default'
-              manifests: '$(System.DefaultWorkingDirectory)/kube-manifests'
+              manifests: '$(Build.SourcesDirectory)/kube-manifests'
 
