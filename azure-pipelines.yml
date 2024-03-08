@@ -117,6 +117,7 @@ stages:
 ## Step-3: Terraform Plan 
 ## Step-4: Terraform Apply
 
+/*
     - deployment: DeployQAAKSCluster
       dependsOn: DeployDevAKSCluster
       displayName: DeployQAAKSCluster
@@ -160,3 +161,4 @@ stages:
                 environmentServiceName: 'terraform-aks-azurerm-svc-con'
                 commandOptions: '$(Pipeline.Workspace)/terraform-manifests-out/$(QA_ENVIRONMENT)-$(Build.BuildId).out'
                 allowTelemetryCollection: false
+*/
