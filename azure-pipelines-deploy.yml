@@ -36,7 +36,7 @@ stages:
         CopyRoot: '$(Build.SourcesDirectory)/kube-manifests'
         Contents: '**'
         ArtifactName: 'kube-manifests'
-        ArtifactType: 'FilePath'
+        ArtifactType: 'Container'
 
 - stage: Deploy
   displayName: Deploy stage
