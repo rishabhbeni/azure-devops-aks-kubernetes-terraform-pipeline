@@ -53,5 +53,5 @@ stages:
               action: 'deploy'
               kubernetesServiceConnection: 'terraform-aks-dev-cluster-default'
               namespace: 'default'
-              manifests: '$(Build.SourcesDirectory)/kube-manifests'
+              manifests: '$(Build.SourcesDirectory)/kube-manifests-out'
 
