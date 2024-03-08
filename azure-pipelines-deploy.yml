@@ -12,11 +12,7 @@ variables:
 
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '5319bc6f-2f28-478b-a67e-481ecde9063d'
-  imageRepository: ''
-  containerRegistry: 'rishabhbeniregistry.azurecr.io'
-  dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'
-  imagePullSecret: 'rishabhbeniregistry1d6d-auth'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
