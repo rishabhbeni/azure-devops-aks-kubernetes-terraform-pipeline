@@ -23,25 +23,8 @@ variables:
 
 
 stages:
-- stage: Build
-  displayName: Build stage
-  jobs:
-  - job: Build
-    displayName: Build
-    pool:
-      vmImage: $(vmImageName)
-    steps:
-    - task: CopyPublishBuildArtifacts@1
-      inputs:
-        CopyRoot: '$(Build.SourcesDirectory)/kube-manifests'
-        Contents: '**'
-        ArtifactName: 'kube-manifests'
-        ArtifactType: 'Container'
-
 - stage: Deploy
   displayName: Deploy stage
-  dependsOn: Build
-
   jobs:
   - deployment: Deploy
     displayName: Deploy
@@ -58,5 +41,5 @@ stages:
               action: 'deploy'
               kubernetesServiceConnection: 'terraform-aks-dev-cluster-default'
               namespace: 'default'
-              manifests: '$(Build.SourcesDirectory)/kube-manifests'
+              manifests: '$(System.DefaultWorkingDirectory)/kube-manifests'
 
