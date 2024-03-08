@@ -9,14 +9,8 @@ resources:
 - repo: self
 
 variables:
-
-  # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '5319bc6f-2f28-478b-a67e-481ecde9063d'
-  tag: '$(Build.BuildId)'
-
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
-
 
 stages:
 # - stage: Build
@@ -50,4 +44,4 @@ stages:
               action: 'deploy'
               kubernetesServiceConnection: 'terraform-aks-dev-cluster-default'
               namespace: 'default'
-              manifests: 'kube-manifests/*'
+              manifests: 'kube-manifests/**'
