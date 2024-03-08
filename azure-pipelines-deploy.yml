@@ -13,16 +13,16 @@ variables:
   vmImageName: 'ubuntu-latest'
 
 stages:
-# - stage: Build
-#   jobs:
-#     - job: PublishBuildArtifacts
-#       steps:
-#       - task: PublishPipelineArtifact@1
-#         displayName: Publish Artifacts
-#         inputs:
-#           targetPath: '$(System.DefaultWorkingDirectory)/kube-manifests'
-#           artifact: 'kube-manifests-out'
-#           publishLocation: 'pipeline'
+- stage: Build
+  jobs:
+    - job: PublishBuildArtifacts
+      steps:
+      - task: PublishPipelineArtifact@1
+        displayName: Publish Artifacts
+        inputs:
+          targetPath: '$(System.DefaultWorkingDirectory)/kube-manifests'
+          artifact: 'kube-manifests-out'
+          publishLocation: 'pipeline'
 
 - stage: Deploy
   displayName: Deploy stage
@@ -37,11 +37,10 @@ stages:
       runOnce:
         deploy:
           steps:
-          - checkout: self
           - task: KubernetesManifest@0
             displayName: Deploy to Kubernetes cluster
             inputs:
               action: 'deploy'
               kubernetesServiceConnection: 'terraform-aks-dev-cluster-default'
               namespace: 'default'
-              manifests: $(System.DefaultWorkingDirectory)/kube-manifests/**
+              manifests: $(System.ArtifactsDirectory)/kube-manifests-out/**
