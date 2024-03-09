@@ -24,23 +24,23 @@ stages:
           artifact: 'kube-manifests-out'
           publishLocation: 'pipeline'
 
-- stage: Deploy
-  displayName: Deploy stage
-  #dependsOn: Build
-  jobs:
-  - deployment: Deploy
-    displayName: Deploy
-    pool:
-      vmImage: $(vmImageName)
-    environment: 'rishabhbeniazuredevopsakskubernetesterraformpipeline.default'
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - task: KubernetesManifest@0
-            displayName: Deploy to Kubernetes cluster
-            inputs:
-              action: 'deploy'
-              kubernetesServiceConnection: 'terraform-aks-dev-cluster-default'
-              namespace: 'default'
-              manifests: $(System.ArtifactsDirectory)/kube-manifests-out/01-Webserver-Apps
+# - stage: Deploy
+#   displayName: Deploy stage
+#   #dependsOn: Build
+#   jobs:
+#   - deployment: Deploy
+#     displayName: Deploy
+#     pool:
+#       vmImage: $(vmImageName)
+#     environment: 'rishabhbeniazuredevopsakskubernetesterraformpipeline.default'
+#     strategy:
+#       runOnce:
+#         deploy:
+#           steps:
+#           - task: KubernetesManifest@0
+#             displayName: Deploy to Kubernetes cluster
+#             inputs:
+#               action: 'deploy'
+#               kubernetesServiceConnection: 'terraform-aks-dev-cluster-default'
+#               namespace: 'default'
+#               manifests: $(System.ArtifactsDirectory)/kube-manifests-out/01-Webserver-Apps
