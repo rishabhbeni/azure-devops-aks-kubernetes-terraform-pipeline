@@ -21,7 +21,7 @@ stages:
         displayName: Publish Artifacts
         inputs:
           targetPath: '$(System.ArtifactsDirectory)/kube-manifests'
-          artifact: 'kube-manifests-out'
+          artifact: 'kube-manifests'
           publishLocation: 'pipeline'
 
 - stage: Deploy
@@ -44,6 +44,6 @@ stages:
               namespace: 'default'
               command: 'apply'
               useConfigurationFile: true
-              configuration: '$(System.ArtifactsDirectory)/kube-manifests-out'
+              configuration: '$(System.ArtifactsDirectory)/kube-manifests'
               secretType: 'dockerRegistry'
               containerRegistryType: 'Azure Container Registry'
