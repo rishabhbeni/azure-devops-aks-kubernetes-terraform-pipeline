@@ -20,7 +20,7 @@ stages:
       - task: PublishPipelineArtifact@1
         displayName: Publish Artifacts
         inputs:
-          targetPath: '$(System.ArtifactsDirectory)/kube-manifests'
+          targetPath: '$(System.DefaultWorkingDirectory)/kube-manifests'
           artifact: 'kube-manifests'
           publishLocation: 'pipeline'
 
